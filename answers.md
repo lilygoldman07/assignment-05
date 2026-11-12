@@ -38,6 +38,8 @@ as few coins as possible that sum to $N$.
 
   (Equivalently: use $\lfloor N / 2^k \rfloor$ coins of value $2^k$, then write the remainder in binary and use one coin $2^i$ for each 1 bit.)
 
+  To implement this efficiently, process each coin denomination from largest to smallest, taking as many coins of that denomination as possible at once using integer division.
+
 - **2b. (5 pts)** Prove that this algorithm is optimal by proving the greedy
   choice and optimal substructure properties.
 

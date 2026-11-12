@@ -49,17 +49,22 @@ def make_huffman_tree(f):
 # When a leaf is found, update the code dict object to map from
 # the value in the leaf to the encoding specified by prefix.
 # Return the code object.
+
 def get_code(node, prefix="", code={}):
-    # TODO - perform a tree traversal and collect encodings for leaves in code
-    if code is None:
-        code = {}  # fresh dict each time, so codes from other files don't mix in
+    # Clear old codes when starting a new tree
+    if prefix == "":
+        code.clear()
+
+    # If this is a leaf, store the character's code
     if node.left is None and node.right is None:
-        # leaf: store the code for this character
         code[node.data[1]] = prefix
     else:
+        # Traverse left and right subtrees
         get_code(node.left, prefix + "0", code)
         get_code(node.right, prefix + "1", code)
+
     return code
+
 
 # Given an alphabet and frequencies, compute the cost of a fixed length encoding.
 # You'll have to consider the total number of unique elements in f to 
